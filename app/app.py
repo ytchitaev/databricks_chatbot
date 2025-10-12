@@ -1,9 +1,8 @@
-# app.py
 import streamlit as st
 from utils import init_components
 from langchain_core.messages import AIMessage, HumanMessage
 
-# Initialize session state
+# initialize session state
 if 'messages' not in st.session_state:
     st.session_state.messages = []
 if 'chat_history' not in st.session_state:
@@ -11,7 +10,7 @@ if 'chat_history' not in st.session_state:
 
 st.title("PDF Documents Chatbot")
 
-# Display chat history
+# display chat history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
@@ -22,15 +21,15 @@ for message in st.session_state.messages:
                     st.write(doc.page_content)
                     st.caption(f"ID: {doc.metadata.get('id')}")
 
-# Get user input
+# get user input
 query = st.chat_input("Enter your query about the documents:")
 
 if query:
-    # Append user message to history and chat_history
+    # append user message to history and chat_history
     st.session_state.messages.append({"role": "user", "content": query})
     st.session_state.chat_history.append(HumanMessage(content=query))
 
-    # Display user message
+    # display user message
     with st.chat_message("user"):
         st.markdown(query)
 

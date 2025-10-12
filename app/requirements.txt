@@ -1,6 +1,6 @@
 streamlit>=1.28.0
-databricks-langchain
-databricks-vectorsearch
-databricks-sdk
-langchain-core
-mlflow
+databricks-langchain==0.8.1
+databricks-vectorsearch==0.60
+databricks-sdk==0.67.0
+langchain-core==0.3.79
+mlflow==3.4.0

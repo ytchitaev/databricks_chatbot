@@ -15,7 +15,3 @@ env:
     value: 'databricks-bge-large-en'
   - name: LLM_ENDPOINT
     value: 'databricks-meta-llama-3-1-8b-instruct'
-  - name: DATABRICKS_CLIENT_ID
-    value: '9e84e630-02bb-4f17-a27f-bbae383b8761'
-  - name: DATABRICKS_CLIENT_SECRET
-    value: 'dose6e2133ef2c267d51524c34254881e4cb'
