@@ -21,10 +21,15 @@ This repo provides a production-ready setup for a RAG (Retrieval-Augmented Gener
 
 ## Screenshots
 
-**Initial response:**
-![Response 1](images/response_1.png)
-**Follow up response with memory:**
-![Response 2](images/response_2.png)
+<details>
+
+<summary>Chatbox question / answer and memory example, click to expand 👇</summary>
+<p><strong>- Initial response:</strong></p>
+<img src="images/response_1.png" alt="Response 1" width="500"/>
+<p><strong>- Follow up response with memory:</strong></p>
+<img src="images/response_2.png" alt="Response 2" width="500"/>
+
+</details>
 
 ## Prerequisites
 
