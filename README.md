@@ -22,18 +22,17 @@ This repo provides a production-ready setup for a RAG (Retrieval-Augmented Gener
 ## Screenshots
 
 <details>
-<summary>Click to expand 👇</summary>
+  <summary>Click to expand 👇</summary>
 
-<figure>
-  <figcaption><strong>Figure 1:</strong> Initial chatbot response:</figcaption>
-  <img src="images/response_1.png" alt="Response 1" width="500">
-</figure>
+  <figure class="img-figure">
+    <figcaption><strong>Figure 1:</strong> Initial chatbot response:</figcaption>
+    <img src="images/response_1.png" alt="Response 1" width="500">
+  </figure>
 
-<figure>
-  <figcaption><strong>Figure 2:</strong> Follow-up response with memory:</figcaption>
-  <img src="images/response_2.png" alt="Response 2" width="500">
-</figure>
-
+  <figure class="img-figure">
+    <figcaption><strong>Figure 2:</strong> Follow-up response with memory:</figcaption>
+    <img src="images/response_2.png" alt="Response 2" width="500">
+  </figure>
 </details>
 
 ## Prerequisites
