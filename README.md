@@ -24,6 +24,8 @@ This repo provides a production-ready setup for a RAG (Retrieval-Augmented Gener
 <details>
 <summary>Click to expand 👇</summary>
 
+<br>
+
 <p><strong>Figure 1:</strong> Initial chatbot response</p>
 <img src="images/response_1.png" alt="Response 1" width="500"><br><br>
 
