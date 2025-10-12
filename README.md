@@ -1,6 +1,6 @@
 # Databricks Chatbot
 
-A proof of concept conversational AI chatbot built with Streamlit and LangChain, powered by Databricks for vector search, embeddings, and LLM inference. This app lets you ingest PDF documents, build a vector store, and query them interactively with chat history awareness. Perfect for document Q&A, research, or knowledge extraction. 🚀
+A proof of concept conversational AI chatbot built with Databricks, Streamlit and LangChain, powered by Databricks for vector search, embeddings, and LLM inference. This app lets you ingest PDF documents, build a vector store, and query them interactively with chat history awareness. Perfect for document Q&A, research, or knowledge extraction. 🚀
 
 ## Overview
 
