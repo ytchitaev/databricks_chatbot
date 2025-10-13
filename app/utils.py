@@ -51,7 +51,4 @@ def init_components():
         ("human", "{input}")
     ])
 
-    def format_docs(docs):
-        return "\n\n".join(doc.page_content for doc in docs)
-
     return retriever, llm, condense_prompt, answer_prompt
