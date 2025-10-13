@@ -49,9 +49,11 @@ A Databricks workspace with access to:
 
 - `setup_unity_catalog.py` - Create UC catalog, volume and schema
 - Upload your PDFs to `/Volumes/document_catalog/default/pdf_docs` via Databricks UI or `dbutils.fs.cp`.
+  - PDF example used - [Review of AI and the Australian Consumer Law](https://treasury.gov.au/publication/p2025-702329) ([PDF](https://treasury.gov.au/sites/default/files/2025-10/p2025-702329-fr.pdf))
 - `ingest_and_chunk_data.py` - Ingest and chunk PDF data from input volume path
 - `embed_and_vector_store.py` - Compute embeddings and create Vector Search index. 
   - *Note: Vector store has spin-up time in Databricks.*
+  - See [Databricks Docs](https://docs.databricks.com/aws/en/generative-ai/create-query-vector-search#create-a-vector-search-endpoint-using-the-python-sdk)
 - `rag_query_results.py` - Test retrieval from notebook.
 - Create Databricks App from UI and permission to LLM and embeddings endpoints.
 - Deploy `/app` from codebase e.g. `databricks apps deploy app-demo --source-code-path /Workspace/Shared/chatbot/app/`

@@ -12,14 +12,13 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from databricks.vector_search.client import VectorSearchClient
-
 from pprint import pprint
 from pyspark.sql import Row
 import warnings
 
 # COMMAND ----------
 
-# Optionally suppress warnings globally (use cautiously)
+# Suppress warnings globally
 warnings.filterwarnings("ignore", message="Using a notebook authentication token")
 
 # COMMAND ----------
@@ -136,101 +135,3 @@ print_sources(retriever_response)
 # DBTITLE 1,Sources list references
 retriever_sources_df = get_retriever_sources_list_df(retriever_response)
 display(retriever_sources_df)
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC ### links
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC
-# MAGIC **Agent**
-# MAGIC - Try this:
-# MAGIC   - https://chatgpt.com/share/68e8b3ed-41f4-800f-b193-4d71e158f391 
-# MAGIC   - https://grok.com/share/c2hhcmQtMw%3D%3D_7d9cace0-3cad-4694-b598-51452da51008
-# MAGIC
-# MAGIC **Reading**
-# MAGIC - https://docs.databricks.com/aws/en/generative-ai/create-query-vector-search#create-a-vector-search-endpoint-using-the-python-sdk
-# MAGIC
-# MAGIC **Sources**
-# MAGIC - https://treasury.gov.au/sites/default/files/2025-10/p2025-702329-fr.pdf
-# MAGIC - https://treasury.gov.au/publication/p2025-702329
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC ### scrap
-
-# COMMAND ----------
-
-retriever_result = retriever.invoke(query, disable_notice=True)
-
-# Convert Documents to rows
-rows = [
-    Row(
-        id=doc.metadata.get('id'),
-        source=doc.metadata.get('source'),
-        content=doc.page_content
-    )
-    for doc in retriever_result
-]
-
-# Create Spark DataFrame
-spark_df = spark.createDataFrame(rows)
-
-# Show nicely formatted output
-display(spark_df)
-
-# COMMAND ----------
-
-
-# def format_docs(docs):
-#     return "\n\n".join(getattr(doc, "text", doc.page_content) for doc in docs)
-
-# def debug_docs(docs):
-#     for doc in docs:
-#         print(doc.__dict__)  # Or print(doc.text, doc.page_content, doc.metadata)
-
-# COMMAND ----------
-
-# DBTITLE 1,Scrap
-llm = ChatDatabricks(endpoint="databricks-meta-llama-3-1-8b-instruct", temperature=0.1)
-
-# Define RAG prompt
-prompt = ChatPromptTemplate.from_template(
-    """You are a document assistant. Answer based on this context: {context}
-    \n\nQuestion: {question}"""
-)
-
-# Build RAG chain
-def format_docs(docs):
-    return "\n\n".join(doc.page_content for doc in docs)
-
-rag_chain = (
-    # {"context": retriever | format_docs, "question": RunnablePassthrough()}
-    {"context": lambda q: format_docs(retriever.invoke(q, disable_notice=True)), "question": RunnablePassthrough()}
-    | prompt
-    | llm
-    | StrOutputParser()
-)
-
-# Example query (run interactively or in a loop)
-# query = "What are some questions I can ask about this document?"
-# query = "What were the key issues addressed in the discussion paper released by Treasury?"
-# query = "List countries referenced"
-# query = "What are the main recommendations"
-# query = "Are there any references to Singapore?"
-# query = "Is there anything the paper warns about?"
-# query = "What is the title of this document?"
-query = "What are some surprising findings?"
-
-response = rag_chain.invoke(query)
-
-print("Response:\n")
-print(response)
-
-print("\nSource:\n")
-pprint([(doc.metadata["id"], doc.metadata["source"]) for doc in retriever.invoke(query, disable_notice=True)])
-# pprint(f"Sources: {[doc.metadata['source'] for doc in retriever.invoke(query)]}")

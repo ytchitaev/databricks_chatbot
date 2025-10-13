@@ -4,14 +4,9 @@
 
 # COMMAND ----------
 
-# from langchain_community.document_loaders import PyPDFLoader
 from pypdf import PdfReader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pyspark.sql.functions import lit, monotonically_increasing_id
-
-# COMMAND ----------
-
-single_pdf_path = "/Volumes/document_catalog/default/pdf_docs/p2025-702329-fr.pdf"
 
 # COMMAND ----------
 
@@ -70,29 +65,10 @@ print(f"Chunked {len(chunks)} chunks and saved to Delta Table: {delta_table_path
 
 # COMMAND ----------
 
-# MAGIC %md
-# MAGIC ### verify
-
-# COMMAND ----------
-
 # MAGIC %sql
+# MAGIC
+# MAGIC -- verify
 # MAGIC select * from document_catalog.default.document_chunks
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC ### scrap
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC drop table document_catalog.default.document_chunks
-
-# COMMAND ----------
-
-from pprint import pprint
-pprint(chunks)
-
-# COMMAND ----------
-
-print(text)
+# MAGIC
+# MAGIC -- debug
+# MAGIC -- drop table document_catalog.default.document_chunks
