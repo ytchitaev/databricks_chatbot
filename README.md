@@ -4,7 +4,7 @@ A proof of concept conversational AI chatbot built with Databricks, Streamlit an
 
 ## Overview
 
-This repo provides a production-ready setup for a RAG (Retrieval-Augmented Generation) application focused on PDF documents. Key components:
+This repo provides a proof of concept setup for a RAG (Retrieval-Augmented Generation) application focused on PDF documents. Key components:
 
 - **PDF Ingestion & Chunking:** Load PDFs from a Databricks Unity Catalog volume, chunk them into manageable pieces, and store in a Delta Table. 📄
 - **Embedding & Vector Search:** Generate embeddings using Databricks endpoints (e.g., `databricks-bge-large-en`) and index them in a Vector Search endpoint for efficient similarity search. 🔍
