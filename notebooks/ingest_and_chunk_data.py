@@ -5,14 +5,11 @@
 # COMMAND ----------
 
 from pypdf import PdfReader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_core.documents import Document
 from pyspark.sql.functions import lit, monotonically_increasing_id
 
 # COMMAND ----------
-
-from pypdf import PdfReader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_core.documents import Document
 
 # Define paths (adjust to your Unity Catalog volume)
 pdf_volume_path = "/Volumes/document_catalog/default/pdf_docs"
