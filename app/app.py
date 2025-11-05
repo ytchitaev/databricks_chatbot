@@ -1,6 +1,9 @@
 import streamlit as st
 from utils import init_components
 from langchain_core.messages import AIMessage, HumanMessage
+from langchain.chains.history_aware_retriever import create_history_aware_retriever
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain.chains.retrieval import create_retrieval_chain
 
 # initialize session state
 if 'messages' not in st.session_state:
@@ -45,10 +48,6 @@ if query:
                 retriever, llm, condense_prompt, answer_prompt = init_components()
 
                 # Build conversational retriever (condenses question with history)
-                from langchain.chains.history_aware_retriever import create_history_aware_retriever
-                from langchain.chains.combine_documents import create_stuff_documents_chain
-                from langchain.chains.retrieval import create_retrieval_chain
-
                 history_aware_retriever = create_history_aware_retriever(
                     llm, retriever, condense_prompt
                 )
